@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Sistema de tres capas — Despega Digital</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 40px 20px;
+    background: #0d0d14;
+    font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    color: #e8e8f0;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; }
+  h1 {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+  .subtitle {
+    text-align: center;
+    color: #8a8aa0;
+    font-size: 13px;
+    margin-bottom: 40px;
+  }
+  .flow-arrow {
+    display: flex;
+    justify-content: center;
+    color: #4a4a5e;
+    font-size: 20px;
+    margin: 4px 0;
+  }
+  .row3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  .card {
+    border-radius: 10px;
+    padding: 16px;
+    border: 1.5px solid;
+  }
+  .card h3 {
+    margin: 0 0 10px 0;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .card ul {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: #cfcfe0;
+  }
+  .card .tag {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 10.5px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+  .c-purple { background: #1a1730; border-color: #534AB7; }
+  .c-purple h3 { color: #CECBF6; }
+  .c-purple .tag { background: #26215C; color: #CECBF6; }
+
+  .c-teal { background: #0e1f1c; border-color: #0F6E56; }
+  .c-teal h3 { color: #9FE1CB; }
+  .c-teal .tag { background: #04342C; color: #9FE1CB; }
+
+  .c-gray { background: #17171a; border-color: #5F5E5A; }
+  .c-gray h3 { color: #B4B2A9; }
+  .c-gray .tag { background: #2C2C2A; color: #B4B2A9; }
+
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #e8e8f0;
+    margin: 36px 0 14px 0;
+    padding-left: 4px;
+    border-left: 3px solid #534AB7;
+    padding-left: 10px;
+  }
+
+  .angulos {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .angulo-box {
+    background: #0e1f1c;
+    border: 1.5px solid #0F6E56;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+  }
+  .angulo-box .name { font-size: 12.5px; font-weight: 600; color: #9FE1CB; }
+  .angulo-box .desc { font-size: 10.5px; color: #6fae95; margin-top: 4px; }
+
+  .template-card {
+    background: #14141c;
+    border: 1px solid #2a2a38;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+  }
+  .template-card .t-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #f0f0f8;
+    margin-bottom: 8px;
+  }
+  .template-card .t-step {
+    font-size: 12px;
+    color: #b8b8c8;
+    line-height: 1.7;
+    padding-left: 14px;
+    position: relative;
+  }
+  .template-card .t-step::before {
+    content: "→";
+    position: absolute;
+    left: -2px;
+    color: #534AB7;
+  }
+  .template-card .t-use {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    background: #26215C;
+    color: #CECBF6;
+    font-weight: 600;
+  }
+  .pending {
+    background: #1a1414;
+    border: 1px dashed #791F1F;
+    color: #F09595;
+    font-size: 11px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 10px;
+  }
+
+  .final-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-top: 30px;
+  }
+  .final-box {
+    background: #17171a;
+    border: 1px solid #444441;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+  }
+  .final-box .ft { font-size: 12.5px; font-weight: 600; color: #B4B2A9; }
+  .final-box .fs { font-size: 10.5px; color: #7a7970; margin-top: 4px; }
+
+  .end-block {
+    text-align: center;
+    margin-top: 24px;
+    padding: 12px;
+    border: 1px solid #2a2a38;
+    border-radius: 8px;
+    font-size: 12.5px;
+    color: #8a8aa0;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Sistema de tres capas — Despega Digital</h1>
+  <div class="subtitle">Fase Cero · Atracción y Nutrición activas · Conversión bloqueada</div>
+
+  <div class="row3">
+    <div class="card c-purple">
+      <h3>Atracción</h3>
+      <ul>
+        <li>Gancho mainstream</li>
+        <li>Demora (historia/metáfora)</li>
+        <li>Payoff</li>
+        <li>CTA: "seguime"</li>
+      </ul>
+      <span class="tag">Sin recurso, solo follow</span>
+    </div>
+
+    <div class="card c-teal">
+      <h3>Nutrición</h3>
+      <ul>
+        <li>Resuelve dolores específicos</li>
+        <li>Siempre termina con organic magnet</li>
+        <li>4 ángulos disponibles</li>
+      </ul>
+      <span class="tag">Activo · Fase Cero</span>
+    </div>
+
+    <div class="card c-gray">
+      <h3>Conversión</h3>
+      <ul>
+        <li>Va directo al hueso</li>
+        <li>Sin entregable</li>
+        <li>CTA: "comentá para trabajar juntos"</li>
+      </ul>
+      <span class="tag">Bloqueado en Fase Cero</span>
+    </div>
+  </div>
+
+  <div class="section-title">Plantilla · Ángulo viral (Atracción)</div>
+  <div class="template-card">
+    <div class="t-step">Gancho mainstream: institución + término técnico/nombre impactante</div>
+    <div class="t-step">Demora: acción habitual vs. estado óptimo del sistema</div>
+    <div class="t-step">Contraste: acción contraproducente y su consecuencia</div>
+    <div class="t-step">Payoff: causa real revelada (no la obvia)</div>
+    <div class="t-step">CTA: acción correcta en el momento trigger específico</div>
+    <span class="t-use">Uso: Atracción</span>
+  </div>
+
+  <div class="section-title">Nutrición · 4 ángulos</div>
+  <div class="angulos">
+    <div class="angulo-box">
+      <div class="name">Vinculación</div>
+      <div class="desc">Libre, sin plantilla</div>
+    </div>
+    <div class="angulo-box">
+      <div class="name">Errores</div>
+      <div class="desc">Plantilla abajo</div>
+    </div>
+    <div class="angulo-box">
+      <div class="name">Epifanía</div>
+      <div class="desc">Gancho Xavier</div>
+    </div>
+    <div class="angulo-box">
+      <div class="name">Transformación viral</div>
+      <div class="desc">Plantilla abajo</div>
+    </div>
+  </div>
+
+  <div class="template-card">
+    <div class="t-title">Vinculación — sin plantilla fija</div>
+    <div class="t-step">Contar algo tuyo: valores, historia personal, brolls de tu día a día (según Marcos, es libre)</div>
+  </div>
+
+  <div class="template-card">
+    <div class="t-title">Ángulo errores</div>
+    <div class="t-step">Gancho: práctica común de tu audiencia → posicionarla como error</div>
+    <div class="t-step">Justificación del error</div>
+    <div class="t-step">Solución única justificada</div>
+    <div class="t-step">Prueba: cliente, antes/después, resultado medible en X tiempo</div>
+    <div class="t-step">3 objeciones superadas</div>
+    <div class="t-step">Recurso gratuito + CTA: "comentá [palabra] y te lo envío"</div>
+    <span class="t-use">Uso: Nutrición</span>
+  </div>
+
+  <div class="template-card">
+    <div class="t-title">Ángulo epifanía (gancho Xavier)</div>
+    <div class="t-step">Leé la mente del avatar: frustración muy específica</div>
+    <div class="t-step">Desarrollá el problema</div>
+    <div class="t-step">Cambiá la perspectiva</div>
+    <div class="t-step">Prueba → Recurso</div>
+    <span class="t-use">Uso: Nutrición</span>
+    <div class="pending">Pendiente: definir texto exacto de la plantilla con Marcos</div>
+  </div>
+
+  <div class="template-card">
+    <div class="t-title">Ángulo transformación viral</div>
+    <div class="t-step">Gancho storytelling: "así pasé de X a Y"</div>
+    <div class="t-step">Situación pasada (vívida, interna y externa)</div>
+    <div class="t-step">Situación actual (vívida)</div>
+    <div class="t-step">3 pasos novedosos y detallados</div>
+    <div class="t-step">Inspiración: "si tú también... puedes lograrlo"</div>
+    <span class="t-use">Uso: Nutrición</span>
+  </div>
+
+  <div class="final-row">
+    <div class="final-box">
+      <div class="ft">CTA "seguime"</div>
+      <div class="fs">Atracción</div>
+    </div>
+    <div class="final-box">
+      <div class="ft">Organic magnet</div>
+      <div class="fs">Nutrición</div>
+    </div>
+    <div class="final-box">
+      <div class="ft">CTA "trabajemos"</div>
+      <div class="fs">Conversión</div>
+    </div>
+  </div>
+
+  <div class="end-block">ManyChat → entrega del recurso → conversación</div>
+
+</div>
+</body>
+</html>
